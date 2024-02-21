@@ -30,7 +30,8 @@ const App = () => {
     }
 
     const publicKeyArrayBuffer = pemToBuffer(currentKey);
-    const { success, data} = await encryptData(publicKeyArrayBuffer, formData);
+    const stringifiedData = JSON.stringify(formData);
+    const { success, data} = await encryptData(publicKeyArrayBuffer, stringifiedData);
     if(!success) return;
     const stringData = arrayBufferToBase64(data);
     sendDataToBackend(stringData);

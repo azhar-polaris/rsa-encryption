@@ -26,8 +26,8 @@ app.post('/api/decrypt', (req, res) => {
     const decryptedData = privateKey.decrypt(binaryData, 'RSA-OAEP', {
       md: forge.md.sha256.create(),
     });
-    console.log(decryptedData, '<======result')
-    res.json({ msg: "success" });
+    const finalData = JSON.parse(decryptedData);
+    res.json({ msg: "success", data: finalData });
 });
 
 app.listen(port, async () => {
