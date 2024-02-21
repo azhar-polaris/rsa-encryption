@@ -5,7 +5,16 @@ import {
   sendDataToBackend 
 } from "./utils";
 
+const MAIN_STYLE = {
+  padding: 20, display: "flex", height: "100vh",
+  justifyContent: "center", alignItems: "center",
+}
 
+const CONTAINER_STYLE = {
+  display: "flex", flexDirection: "column",
+  maxWdith: 500, border: '3px solid red',
+  padding: 50, gap: 20, borderRadius: 3
+}
 
 const App = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -28,12 +37,12 @@ const App = () => {
   }
 
   const handleChangeForm = (label, val) => {
-
+    setFormData(prevData => ({ ...prevData, [label]: val }))
   }
-
   
   return (
-    <div>
+    <div style={MAIN_STYLE}>
+      <div style={CONTAINER_STYLE}>
       <input
         type="email"
         value={formData.email}
@@ -47,6 +56,7 @@ const App = () => {
         placeholder="Password"
       />
       <button onClick={handleSubmit}>Encrypt and Send</button>
+    </div>
     </div>
   );
 };
